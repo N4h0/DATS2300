@@ -14,7 +14,6 @@ public class Aufgabe1_2 {
     {
         if (a.length < 1)
             throw new java.util.NoSuchElementException("Tabellen a er tom!");
-
         int m = 0;  // indeks til foreløpig største verdi (m for maks)
 
         for (int i = 1; i < a.length; i++) // obs: starter med i = 1
