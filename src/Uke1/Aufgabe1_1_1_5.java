@@ -1,11 +1,17 @@
 package Uke1;
 
+public class Aufgabe1_1_1_5 {
+}
+
+/*
+package Uke1;
+
 public static void main(String[] args) {
         int[] a = {1, 4, 2, 6, 765, 123, 39210, 11, -99,  -99};
 
         int min_verdi = min(a);
         System.out.println(min_verdi);
-        }
+}
 
 public static int maks(int[] a)  // versjon 3 av maks-metoden
         {
@@ -30,3 +36,4 @@ public static int maks(int[] a)  // versjon 3 av maks-metoden
         }
         }
         } // maks
+ */
