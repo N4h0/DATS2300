@@ -1,4 +1,4 @@
-package Uke2;
+package Uke35;
 
 /*
 public class Aufgabe_1_2_1_5 {

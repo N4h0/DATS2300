@@ -1,6 +1,7 @@
-package Uke2.hjelpeklasser;
+package hjelpeklasser;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class Tabell     // Samleklasse for tabellmetoder
@@ -46,10 +47,8 @@ public class Tabell     // Samleklasse for tabellmetoder
     // Metoden maks(int[] a, int fra, int til)   Programkode 1.2.1 b)
     public static int maks(int[] a, int fra, int til)
     {
-        if (fra < 0 || til > a.length || fra >= til)
-        {
-            throw new IllegalArgumentException("Illegalt intervall!");
-        }
+
+        fratilKontroll(a.length, fra, til);
 
         int m = fra;              // indeks til største verdi i a[fra:til>
         int maksverdi = a[fra];   // største verdi i a[fra:til>
@@ -157,6 +156,71 @@ public class Tabell     // Samleklasse for tabellmetoder
         if (fra > til)                                // fra er større enn til
             throw new IllegalArgumentException
                     ("fra(" + fra + ") > til(" + til + ") - illegalt intervall!");
+
+        if (fra == til)
+            throw new NoSuchElementException
+                    ("fra(" + fra + ") = til(" + til + ") - tomt tabellintervall!");
+    }
+
+    public static void vhKontroll(int tablengde, int v, int h)
+    {
+        if (v < 0)
+            throw new ArrayIndexOutOfBoundsException("v(" + v + ") < 0");
+
+        if (h >= tablengde)
+            throw new ArrayIndexOutOfBoundsException
+                    ("h(" + h + ") >= tablengde(" + tablengde + ")");
+
+        if (v > h + 1)
+            throw new IllegalArgumentException
+                    ("v = " + v + ", h = " + h);
+    }
+
+    public static void snu(int[] a, int v, int h)  // snur intervallet a[v:h]
+    {
+        while (v < h) bytt(a, v++, h--);
+    }
+
+    public static void snu(int[] a, int v)  // snur fra og med v og ut tabellen
+    {
+        snu(a, v, a.length - 1);
+    }
+
+    public static void snu(int[] a)  // snur hele tabellen
+    {
+        snu(a, 0, a.length - 1);
+    }
+
+    public static boolean nestePermutasjon(int[] a)
+    {
+        int i = a.length - 2;                    // i starter nest bakerst
+        while (i >= 0 && a[i] > a[i + 1]) i--;   // går mot venstre
+        if (i < 0) return false;                 // a = {n, n-1, . . . , 2, 1}
+
+        int j = a.length - 1;                    // j starter bakerst
+        while (a[j] < a[i]) j--;                 // stopper når a[j] > a[i]
+        bytt(a,i,j); snu(a,i + 1);               // bytter og snur
+
+        return true;                             // en ny permutasjon
+    }
+
+    public static int inversjoner(int[] a)
+    {
+        int antall = 0;  // antall inversjoner
+        for (int i = 0; i < a.length - 1; i++)
+        {
+            for (int j = i + 1; j < a.length; j++)
+            {
+                if (a[i] > a[j]) antall++;  // en inversjon siden i < j
+            }
+        }
+        return antall;
+    }
+
+    public static void utvalgssortering(int[] a)
+    {
+        for (int i = 0; i < a.length - 1; i++)
+            bytt(a, i, min(a, i, a.length));  // to hjelpemetoder
     }
 
 }

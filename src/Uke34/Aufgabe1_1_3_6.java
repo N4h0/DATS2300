@@ -1,4 +1,4 @@
-package Uke1;
+package Uke34;
 
 public class Aufgabe1_1_3_6 {
     public static void main(String[] args) {
